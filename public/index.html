@@ -16,39 +16,40 @@
     <div class="container">
       <div class="macro-calc">
 
-        <form id="form-macro-calc" action="/signup/" method="post">
+        <form id="form-macro-calc" class="js-macro-calc" action="/" method="post">
           <fieldset>  
-            <label class="gender-choice" for="gender-male">Male
-              <input type="radio" id="gender-male" name="gender" value="male" required>
-            </label>
-            <label class="gender-choice" for="gender-female">Female
-              <input type="radio" id="gender-female" name="gender" value="female" required>
+            <label class="gender-choice" for="gender-choice">Gender
+              <select class="js-gender-choice" name="gender" id="gender-choice" required>
+                <option value="" disabled selected>Select a gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
             </label>
           </fieldset>
 
           <fieldset>
             <label class="age-input" for="age-input">Age
-              <input type="number" id="age-input" name="age" required>
+              <input class="js-age-input" type="number" id="age-input" name="age" required>
             </label>
           </fieldset>
 
           <fieldset>
             <label class="height-input" for="height-input-ft">Height (ft)
-              <input type="number" id="height-input-ft" name="height-ft">
+              <input class="js-height-input-ft" type="number" id="height-input-ft" name="height-ft">
             </label>
             <label class="height-input" for="height-input-in">Height (in)
-              <input type="number" id="height-input-in" name="height-in">
+              <input class="js-height-input-in" type="number" id="height-input-in" name="height-in">
             </label>
           </fieldset>
           <fieldset>
             <label class="weight-input" for="weight-input">Weight (Lbs)
-              <input type="number" id="weight-input" name="Weight">
+              <input class="js-weight-input" type="number" id="weight-input" name="Weight">
             </label>
           </fieldset>
 
           <fieldset>
             <label class="activity-choice" for="activity-choice">Activity
-              <select name="activity" id="activity-choice" required>
+              <select class="js-activity-choice" name="activity" id="activity-choice" required>
                 <option value="" disabled selected>Select an activity level</option>
                 <option value="sedentary">Sedentary</option>
                 <option value="light">Light</option>
@@ -61,14 +62,14 @@
 
           <fieldset>
             <label class="goal-choice" for="goal-choice">Goal
-              <select name="goal" id="goal-choice" required>
+              <select class="js-goal-choice" name="goal" id="goal-choice" required>
                 <option value="" disabled selected>Select a goal</option>
                 <option value="gain">Gain Weight</option>
                 <option value="lose">Lose Weight</option>
               </select>
             </label>
           </fieldset>
-          <button type="submit" class="btn-macro-calc">Calculate Macros</button>
+          <button type="submit" class="btn-macro-calc js-btn-macro-calc">Calculate Macros</button>
         </form>
         
       </div><!-- / .macro-calc -->
@@ -106,7 +107,7 @@
             </label>
           </fieldset>
 
-          <button type="submit" class="btn-recipe-generator">Calculate Macros</button>
+          <button type="submit" class="btn-recipe-generator">Generate Recipe List</button>
         </form>
       </div><!-- / .recipe-generator -->
 
