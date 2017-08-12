@@ -72,14 +72,6 @@ gulp.task('html', function() {
 });
 
 // bundle js files and minimize
-// gulp.task('js', function() {
-//   return gulp.src(`${folders.src}/js/**/*.js`)
-//     .pipe(concat('app.js'))
-//     // .pipe(uglify())
-//     .pipe(gulp.dest(`${folders.build}/js`))
-//     .pipe(notify({ message: 'JS compiled successfully' }));
-// });
-
 gulp.task('js', function(cb) {
   pump([
     gulp.src(`${folders.src}/js/**/*.js`),
