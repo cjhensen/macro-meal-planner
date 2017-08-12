@@ -17,7 +17,6 @@
       <div class="macro-calc">
 
         <form id="form-macro-calc" action="/signup/" method="post">
-
           <fieldset>  
             <label class="gender-choice" for="gender-male">Male
               <input type="radio" id="gender-male" name="gender" value="male" required>
@@ -71,7 +70,7 @@
           </fieldset>
           <button type="submit" class="btn-macro-calc">Calculate Macros</button>
         </form>
-
+        
       </div><!-- / .macro-calc -->
 
       <div class="macro-display">
@@ -98,8 +97,21 @@
         </ul>
       </div><!-- / .macro-display -->
 
+
       <div class="recipe-generator">
+        <form id="recipe-generator" action="/signup/" method="post">
+          <fieldset>
+            <label class="meals-input" for="meals-input">How many meals would you like to eat per day? (5 max)
+              <input type="number" id="meals-input" name="meals" max="5" required>
+            </label>
+          </fieldset>
+
+          <button type="submit" class="btn-recipe-generator">Calculate Macros</button>
+        </form>
       </div><!-- / .recipe-generator -->
+
+      <div class="recipe-display">
+        </div><!-- / .recipe-display -->
 
     </div><!- / .container -->
   </section>
