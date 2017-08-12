@@ -1,0 +1,58 @@
+@grid-columns: 12;
+@grid-gutter-width: 20px;
+@max-width: 900px;
+@grid-width: 860px;
+
+/* For media query */
+@screen-size-mobile: 640px;
+
+.generate-row(@max-width: @max-width, @gutter: @grid-gutter-width) {
+  .row {
+    max-width: @max-width;
+    padding: 0 @grid-gutter-width;
+    margin: 0 auto;
+  }
+
+  .row::before, 
+  .row::after {
+    display: table;
+    content: '';
+  }
+  .row::after {
+    clear: both;
+  }
+}
+
+/* Mobile Defaults */
+.generate-default-cols (@number-cols; @i: 1) when (@i <= @number-cols) {
+  .col-@{i} {
+    width: 100%;
+    padding: unit(((@grid-gutter-width / 2) / @grid-width) * 100, ~"%");
+    float: left;
+  }
+
+  .generate-default-cols(@number-cols; @i + 1);
+}
+
+/* Non-mobile */
+.generate-responsive-cols (@grid-width; @number-cols; @i: 1) when (@i <= @number-cols) {
+  .col-@{i} {
+    @single-col-width: ((@i / @number-cols) * 100);
+    width: unit(@single-col-width, ~"%");
+  }
+
+  .generate-responsive-cols(@grid-width; @number-cols; @i + 1);
+}
+
+/* Putting it all together with a media query for mobile*/
+.generate-grid(@container-size) {
+  .generate-default-cols(12);
+
+  @media(min-width: @container-size) {
+    .generate-responsive-cols(960px, 12);
+  }
+}
+
+/* Generate everything */
+.generate-row;
+.generate-grid(@screen-size-mobile);

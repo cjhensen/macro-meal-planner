@@ -60,7 +60,7 @@ gulp.task('less', function() {
   .pipe(less())
   .pipe(minifycss())
   .pipe(gulp.dest(`${folders.build}/css`))
-  .pipe(notify({ message: 'SASS compiled successfully' }));
+  .pipe(notify({ message: 'LESS compiled successfully' }));
 });
 
 // migrate html
