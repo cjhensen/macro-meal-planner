@@ -1,1 +1,0 @@
-const API_URL="https://api.edamam.com/search",API_APP_ID="c5c24658",API_APP_KEY="34543537cae6e24edf2fa8fc9c747a95";function getDataFromApi(a,b){$.ajax({url:API_URL,data:{q:a,app_id:API_APP_ID,app_key:API_APP_KEY},dataType:"json",type:"GET",success:b})}function showQueryData(a){console.log("showQueryData"),console.log("data",a)}getDataFromApi("chicken",showQueryData);
