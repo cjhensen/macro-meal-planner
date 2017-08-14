@@ -14,8 +14,8 @@ const MACRO_DISPLAY_CARBS = '.js-macro-carbs';
 const MACRO_DISPLAY_FAT = '.js-macro-fat';
 
 const appState = {
-  userInfo: {
-  }
+  userInfo: {},
+  macros: {}
 };
 
 // When macro button is clicked:
@@ -25,8 +25,9 @@ function handleMacroBtnClicked(event) {
   event.preventDefault();
   assignUserInfoToAppState();
   console.log('appState', appState);
-  updateMacroDisplay(calculateMacros());
-  calculateMacros();
+  assignMacroValuesToAppState();
+  console.log('appState', appState);
+  updateMacroDisplay(appState.macros);
 }
 
 // Convert user height from inches to centimeters for the equation
@@ -63,6 +64,11 @@ function calculateTotalCaloriesByGoal(goal, tdee) {
   }
 }
 
+function updateMacroDisplay() {
+  
+}
+
+
 // Gets tdee and total calories and stores them as local variables
 // Uses the local variables and appState.userInfo.weight
 // Returns an object with macronutrients properly calculated in grams and cals
@@ -96,6 +102,10 @@ function calculateMacros() {
   console.log('macros', macros);
 
   return macros;
+}
+
+function assignMacroValuesToAppState() {
+  Object.assign(appState.macros, calculateMacros());
 }
 
 
