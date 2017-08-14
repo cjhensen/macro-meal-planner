@@ -7,6 +7,11 @@ const WEIGHT_INPUT = '.js-weight-input';
 const ACTIVITY_INPUT = '.js-activity-choice';
 const GOAL_INPUT = '.js-goal-choice';
 const BTN_GENERATE_MACROS = '.js-btn-macro-calc';
+const MACRO_DISPLAY = '.js-macro-display';
+const MACRO_DISPLAY_CALS = '.js-total-cals';
+const MACRO_DISPLAY_PROTEIN = '.js-macro-protein';
+const MACRO_DISPLAY_CARBS = '.js-macro-carbs';
+const MACRO_DISPLAY_FAT = '.js-macro-fat';
 
 const appState = {
   userInfo: {
@@ -20,6 +25,7 @@ function handleMacroBtnClicked(event) {
   event.preventDefault();
   assignUserInfoToAppState();
   console.log('appState', appState);
+  updateMacroDisplay(calculateMacros());
   calculateMacros();
 }
 
@@ -40,10 +46,10 @@ function convertUserWeight(weight) {
 // Calculates TDEE based on gender due to the varying formulas
 function calculateTdee(gender) {
   if(gender === "male") {
-    return ((10 * convertUserWeight(appState.userInfo.weight)) + (6.25 * convertUserHeight(appState.userInfo.height_ft, appState.userInfo.height_in)) - (5 * appState.userInfo.age) - 5) * appState.userInfo.activity;
+    return ((10 * convertUserWeight(appState.userInfo.weight)) + (6.25 * convertUserHeight(appState.userInfo.height_ft, appState.userInfo.height_in)) - (5 * appState.userInfo.age) + 5) * appState.userInfo.activity;
   }
   if(gender === "female") {
-    return (10 * convertUserWeight(appState.userInfo.weight) + 6.25 * convertUserHeight(appState.userInfo.height_ft, appState.userInfo.height_in) - 5 * appState.userInfo.age - 161) * appState.userInfo.activity;
+    return ((10 * convertUserWeight(appState.userInfo.weight)) + (6.25 * convertUserHeight(appState.userInfo.height_ft, appState.userInfo.height_in)) - (5 * appState.userInfo.age) - 161) * appState.userInfo.activity;
   }
 }
 
@@ -57,6 +63,9 @@ function calculateTotalCaloriesByGoal(goal, tdee) {
   }
 }
 
+// Gets tdee and total calories and stores them as local variables
+// Uses the local variables and appState.userInfo.weight
+// Returns an object with macronutrients properly calculated in grams and cals
 function calculateMacros() {
   // male && gain weight
   const tdee = calculateTdee(appState.userInfo.gender);
@@ -66,15 +75,66 @@ function calculateMacros() {
 
   const macros = {
     protein: {
-      grams: appState.userInfo.weight,
-      calories: appState.userInfo.weight * 4
+      grams: calculateProtein(appState.userInfo.weight).grams,
+      calories: calculateProtein(appState.userInfo.weight).calories
     },
     fat: {
-      grams: appState.userInfo.weight * .4,
-      calories: (appState.userInfo.weight * .4) * 9
+      grams: calculateFat(totalCalories).grams,
+      calories: calculateFat(totalCalories).calories
+    },
+    carbs: {
+      grams: calculateCarbs(
+                  calculateProtein(appState.userInfo.weight).calories, 
+                  calculateFat(totalCalories).calories,
+                  totalCalories).grams,
+      calories: calculateCarbs(
+                  calculateProtein(appState.userInfo.weight).calories, 
+                  calculateFat(totalCalories).calories,
+                  totalCalories).calories
     }
   }
   console.log('macros', macros);
+
+  return macros;
+}
+
+
+function calculateProtein(weight) {
+  const grams = weight;
+  const calories = weight * 4;
+
+  const protein = {
+    grams: grams,
+    calories: calories
+  }
+
+  return protein;
+}
+
+function calculateFat(totalCals) {
+  const calories = totalCals * .25;
+  const grams = calories / 9;
+  
+  const fat = {
+    grams: grams,
+    calories: calories
+  }
+
+  return fat;
+}
+
+function calculateCarbs(proteinCals, fatCals, totalCals) {
+  const usedCals = proteinCals + fatCals;
+  const remainingCals = totalCals - usedCals;
+
+  const grams = remainingCals / 4;
+
+  const carbs = {
+    grams: grams,
+    calories: remainingCals
+  }
+
+  return carbs;
 }
 
 
@@ -98,7 +158,7 @@ function convertActivityInput(val) {
       activityMultiplier = 1.55;
       break;
     case "very":
-      activityMultiplier = 1.75;
+      activityMultiplier = 1.725;
       break;
     case "extreme":
       activityMultiplier = 1.9;
