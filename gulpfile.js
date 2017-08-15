@@ -60,7 +60,8 @@ gulp.task('less', function() {
   .pipe(less())
   .pipe(minifycss())
   .pipe(gulp.dest(`${folders.build}/css`))
-  .pipe(notify({ message: 'SASS compiled successfully' }));
+  .pipe(browserSync.stream())
+  .pipe(notify({ message: 'LESS compiled successfully' }));
 });
 
 // migrate html
@@ -75,12 +76,14 @@ gulp.task('html', function() {
 gulp.task('js', function(cb) {
   pump([
     gulp.src(`${folders.src}/js/**/*.js`),
-    babili({
-      mangle: {
-        keepClassName: true
-      }
-    }),
+    concat('app.js'),
+    // babili({
+    //   mangle: {
+    //     keepClassName: true
+    //   }
+    // }),
     gulp.dest(`${folders.build}/js`),
+    browserSync.stream(),
     notify({ message: 'JS compiled successfully' })
     ],
     cb
