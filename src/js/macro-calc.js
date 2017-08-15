@@ -26,7 +26,8 @@ const API_APP_KEY = "34543537cae6e24edf2fa8fc9c747a95";
 
 const appState = {
   userInfo: {},
-  macros: {}
+  macros: {},
+  macroMealSplit: {}
 };
 
 // When macro button is clicked:
@@ -38,9 +39,7 @@ function handleMacroBtnClicked(event) {
   console.log('handleMacroBtnClicked');
   event.preventDefault();
   assignUserInfoToAppState();
-  console.log('appState', appState);
   assignMacroValuesToAppState();
-  console.log('appState', appState);
   updateMacroDisplay(appState.macros);
 }
 
@@ -85,7 +84,7 @@ function calculateTotalCaloriesByGoal(goal, tdee) {
 //  Populate that template
 //  Append the template to the page, instead of doing all these single field selections
 function updateMacroDisplay(macros) {
-  console.log('updateMacroDisplay', updateMacroDisplay);
+  console.log('updateMacroDisplay');
   const displayCals = $(`${MACRO_DISPLAY_CALS} span`);
   const displayProteinCals = $(`${MACRO_DISPLAY_PROTEIN} li:eq(0) span`);
   const displayProteinGrams = $(`${MACRO_DISPLAY_PROTEIN} li:eq(1) span`);
