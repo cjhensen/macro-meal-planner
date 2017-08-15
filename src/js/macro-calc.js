@@ -13,6 +13,11 @@ const MACRO_DISPLAY_PROTEIN = '.js-macro-protein';
 const MACRO_DISPLAY_CARBS = '.js-macro-carbs';
 const MACRO_DISPLAY_FAT = '.js-macro-fat';
 
+
+// Recipe-generator.js
+const MEAL_COUNT_INPUT = '.js-meal-count';
+const BTN_GENERATE_RECIPE = '.js-btn-recipe-generator';
+
 const appState = {
   userInfo: {},
   macros: {}
@@ -244,6 +249,7 @@ function getMacroFormValues() {
 // 
 function assignEventHandlers() {
   $(BTN_GENERATE_MACROS).on('click', handleMacroBtnClicked);
+  $(BTN_GENERATE_RECIPE).on('click', handleRecipeBtnClicked);
 }
 
 // Runs the app

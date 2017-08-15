@@ -50,7 +50,6 @@ gulp.task('serve', function() {
   gulp.watch(`${folders.src}/less/**/*.less`, ['less']);
   gulp.watch(`${folders.src}/**/*.html`, ['html']);
   gulp.watch(`${folders.src}/js/**/*.js`, ['js']);
-  gulp.watch(`${folders.src}/js/**/*.js`).on('add', ['js']);
   gulp.watch(`${folders.build}/**`).on('change', browserSync.reload);
 });
 

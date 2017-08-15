@@ -103,11 +103,11 @@
         <form id="recipe-generator" action="/signup/" method="post">
           <fieldset>
             <label class="meals-input" for="meals-input">How many meals would you like to eat per day? (5 max)
-              <input type="number" id="meals-input" name="meals" max="5" required>
+              <input class="js-meal-count" type="number" id="meals-input" name="meals" max="5" required>
             </label>
           </fieldset>
 
-          <button type="submit" class="btn-recipe-generator">Generate Recipe List</button>
+          <button type="submit" class="btn-recipe-generator js-btn-recipe-generator">Generate Recipe List</button>
         </form>
       </div><!-- / .recipe-generator -->
 
