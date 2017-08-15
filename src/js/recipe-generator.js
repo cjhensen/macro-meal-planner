@@ -1,4 +1,3 @@
-
 function handleRecipeBtnClicked(event) {
   event.preventDefault();
   console.log('handleRecipeBtnClicked');
