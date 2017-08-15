@@ -75,7 +75,7 @@ function getRecipes(mealCount) {
       console.log('calorieRange', calorieRange);
       console.log('typeof cr', typeof(calorieRange));
       apiOptions.calories = calorieRange;
-      console.log('apiOptions', apiOptions);
+      console.log('apiOptionss', apiOptions);
       getRecipesFromApi(searchTerms[i], apiOptions, processRecipes);
     }
   }
