@@ -18,6 +18,12 @@ const MACRO_DISPLAY_FAT = '.js-macro-fat';
 const MEAL_COUNT_INPUT = '.js-meal-count';
 const BTN_GENERATE_RECIPE = '.js-btn-recipe-generator';
 
+// API
+const API_URL = "https://api.edamam.com/search";
+const API_APP_ID = "c5c24658";
+const API_APP_KEY = "34543537cae6e24edf2fa8fc9c747a95";
+
+
 const appState = {
   userInfo: {},
   macros: {}
