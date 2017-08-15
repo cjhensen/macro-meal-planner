@@ -77,11 +77,11 @@ gulp.task('js', function(cb) {
   pump([
     gulp.src(`${folders.src}/js/**/*.js`),
     concat('app.js'),
-    babili({
-      mangle: {
-        keepClassName: true
-      }
-    }),
+    // babili({
+    //   mangle: {
+    //     keepClassName: true
+    //   }
+    // }),
     gulp.dest(`${folders.build}/js`),
     browserSync.stream(),
     notify({ message: 'JS compiled successfully' })
