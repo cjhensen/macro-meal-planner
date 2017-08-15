@@ -21,7 +21,7 @@ const BTN_GENERATE_RECIPE = '.js-btn-recipe-generator';
 // API
 const API_URL = "https://api.edamam.com/search";
 const API_APP_ID = "c5c24658";
-const API_APP_KEY = "34543537cae6e24edf2fa8fc9c747a95";
+const API_APP_KEY = "70914e38dfb0496c9ab318337033b9b9";
 
 
 const appState = {

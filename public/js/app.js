@@ -22,7 +22,7 @@ const BTN_GENERATE_RECIPE = '.js-btn-recipe-generator';
 // API
 const API_URL = "https://api.edamam.com/search";
 const API_APP_ID = "c5c24658";
-const API_APP_KEY = "34543537cae6e24edf2fa8fc9c747a95";
+const API_APP_KEY = "70914e38dfb0496c9ab318337033b9b9";
 
 
 const appState = {
@@ -336,15 +336,15 @@ function getRecipes(mealCount) {
   console.log('splits', splitCarbs, splitProtein, splitFat);
   if(mealCount === 5) {
     console.log('if inside');
-    for(let i = 0; i < mealCount-4; i++) {
+    for(let i = 0; i < mealCount; i++) {
       let absoluteMealCals = ((splitCarbs[i] * 4) + (splitProtein[i] * 4) + (splitFat[i] * 9));
       console.log('absoluteMealCals', absoluteMealCals);
-      let calorieRange = `gte ${absoluteMealCals - 50},  lte ${absoluteMealCals + 50}`;
+      let calorieRange = `gte ${Math.floor(absoluteMealCals) - 50}, lte ${Math.floor(absoluteMealCals) + 50}`;
       console.log('calorieRange', calorieRange);
       console.log('typeof cr', typeof(calorieRange));
       apiOptions.calories = calorieRange;
       console.log('apiOptions', apiOptions);
-      getRecipesFromApi(searchTerms[i], apiOptions, processRecipes);
+      getDataFromApi(searchTerms[i], apiOptions, processRecipes);
     }
   }
 
@@ -356,14 +356,15 @@ function processRecipes(data) {
 
 
 
-function getRecipesFromApi(searchTerm, options, callback) {
+function getDataFromApi(searchTerm, options, callback) {
+
   const settings = {
     url: API_URL,
     data: {
       q: searchTerm,
+      calories: options.calories,
       app_id: API_APP_ID,
-      app_key: API_APP_KEY,
-      calories: options.calories
+      app_key: API_APP_KEY
     },
     dataType: 'json',
     type: 'GET',
@@ -371,3 +372,9 @@ function getRecipesFromApi(searchTerm, options, callback) {
   };
   $.ajax(settings);
 }
+
+
+
+
+
+

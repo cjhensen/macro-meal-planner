@@ -68,15 +68,15 @@ function getRecipes(mealCount) {
   console.log('splits', splitCarbs, splitProtein, splitFat);
   if(mealCount === 5) {
     console.log('if inside');
-    for(let i = 0; i < mealCount-4; i++) {
+    for(let i = 0; i < mealCount; i++) {
       let absoluteMealCals = ((splitCarbs[i] * 4) + (splitProtein[i] * 4) + (splitFat[i] * 9));
       console.log('absoluteMealCals', absoluteMealCals);
-      let calorieRange = `gte ${absoluteMealCals - 50},  lte ${absoluteMealCals + 50}`;
+      let calorieRange = `gte ${Math.floor(absoluteMealCals) - 50}, lte ${Math.floor(absoluteMealCals) + 50}`;
       console.log('calorieRange', calorieRange);
       console.log('typeof cr', typeof(calorieRange));
       apiOptions.calories = calorieRange;
       console.log('apiOptions', apiOptions);
-      getRecipesFromApi(searchTerms[i], apiOptions, processRecipes);
+      getDataFromApi(searchTerms[i], apiOptions, processRecipes);
     }
   }
 
@@ -88,14 +88,15 @@ function processRecipes(data) {
 
 
 
-function getRecipesFromApi(searchTerm, options, callback) {
+function getDataFromApi(searchTerm, options, callback) {
+
   const settings = {
     url: API_URL,
     data: {
       q: searchTerm,
+      calories: options.calories,
       app_id: API_APP_ID,
-      app_key: API_APP_KEY,
-      calories: options.calories
+      app_key: API_APP_KEY
     },
     dataType: 'json',
     type: 'GET',
@@ -103,3 +104,9 @@ function getRecipesFromApi(searchTerm, options, callback) {
   };
   $.ajax(settings);
 }
+
+
+
+
+
+
