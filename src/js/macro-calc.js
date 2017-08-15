@@ -20,6 +20,9 @@ const appState = {
 
 // When macro button is clicked:
 // Get the values from the macro form
+// Assign the values after processing them to the userInfo object in appState
+// Assign the values for macros after processing to the macros object in appState
+// Update the macro display to show the calcualted macros
 function handleMacroBtnClicked(event) {
   console.log('handleMacroBtnClicked');
   event.preventDefault();
@@ -64,8 +67,44 @@ function calculateTotalCaloriesByGoal(goal, tdee) {
   }
 }
 
-function updateMacroDisplay() {
-  
+// Show the macros on the page
+// Re-factor this:
+//  Hide macro display first
+//  Have a template in js
+//  Populate that template
+//  Append the template to the page, instead of doing all these single field selections
+function updateMacroDisplay(macros) {
+  console.log('updateMacroDisplay', updateMacroDisplay);
+  const displayCals = $(`${MACRO_DISPLAY_CALS} span`);
+  const displayProteinCals = $(`${MACRO_DISPLAY_PROTEIN} li:eq(0) span`);
+  const displayProteinGrams = $(`${MACRO_DISPLAY_PROTEIN} li:eq(1) span`);
+  const displayCarbsCals = $(`${MACRO_DISPLAY_CARBS} li:eq(0) span`);
+  const displayCarbsGrams = $(`${MACRO_DISPLAY_CARBS} li:eq(1) span`);
+  const displayFatCals = $(`${MACRO_DISPLAY_FAT} li:eq(0) span`);
+  const displayFatGrams = $(`${MACRO_DISPLAY_FAT} li:eq(1) span`);
+
+  const displayFields = [
+    displayCals, 
+    displayProteinCals, 
+    displayProteinGrams, 
+    displayCarbsCals, 
+    displayCarbsGrams, 
+    displayFatCals, 
+    displayFatGrams
+  ];
+
+  // clear existing text first just in-case they already calculated macros
+  displayFields.forEach(function(item) {
+    item.text('');
+  });
+
+  displayCals.append(macros.totalCals);
+  displayProteinCals.append(macros.protein.calories);
+  displayProteinGrams.append(macros.protein.grams);
+  displayCarbsCals.append(macros.carbs.calories);
+  displayCarbsGrams.append(macros.carbs.grams);
+  displayFatCals.append(macros.fat.calories);
+  displayFatGrams.append(macros.fat.grams);
 }
 
 
@@ -80,6 +119,7 @@ function calculateMacros() {
   console.log('totalCalories', totalCalories);
 
   const macros = {
+    totalCals: totalCalories,
     protein: {
       grams: calculateProtein(appState.userInfo.weight).grams,
       calories: calculateProtein(appState.userInfo.weight).calories
@@ -105,6 +145,7 @@ function calculateMacros() {
 }
 
 function assignMacroValuesToAppState() {
+  console.log('assignMacroValuesToAppState', assignMacroValuesToAppState);
   Object.assign(appState.macros, calculateMacros());
 }
 
