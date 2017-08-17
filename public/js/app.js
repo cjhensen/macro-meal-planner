@@ -18,6 +18,7 @@ const MACRO_DISPLAY_FAT = '.js-macro-fat';
 // Recipe-generator.js
 const MEAL_COUNT_INPUT = '.js-meal-count';
 const BTN_GENERATE_RECIPE = '.js-btn-recipe-generator';
+const RECIPE_DISPLAY = '.js-recipe-display';
 
 // API
 const API_URL = "https://api.edamam.com/search";
@@ -28,7 +29,8 @@ const API_APP_KEY = "70914e38dfb0496c9ab318337033b9b9";
 const appState = {
   userInfo: {},
   macros: {},
-  macroMealSplit: {}
+  macroMealSplit: {},
+  selectedRecipes: []
 };
 
 // When macro button is clicked:
@@ -270,8 +272,12 @@ function handleRecipeBtnClicked(event) {
   event.preventDefault();
   console.log('handleRecipeBtnClicked');
   const mealCount = getRecipeCountInputValue();
-  assignRandomMacroValuesToAppState(mealCount);
-  getRecipes(mealCount);
+  if(mealCount <= 5) {
+    assignRandomMacroValuesToAppState(mealCount);
+    getRecipes(mealCount);
+  } else {
+    console.log('Can not calculate for more than 5 meals');
+  }
 
 }
 
@@ -320,7 +326,7 @@ function assignRandomMacroValuesToAppState(mealCount) {
 }
 
 function getRecipes(mealCount) {
-  console.log('getRecipes', getRecipes);
+  console.log('getRecipes');
   console.log('mc', mealCount);
   const searchTerms = ["breakfast", "lunch", "dinner", "snack", "snack"];
 
@@ -332,11 +338,11 @@ function getRecipes(mealCount) {
   const splitProtein = appState.macroMealSplit.protein;
   const splitFat = appState.macroMealSplit.fat;
 
-
   console.log('splits', splitCarbs, splitProtein, splitFat);
-  if(mealCount === 5) {
+  if(mealCount <= 5) {
     console.log('if inside');
     for(let i = 0; i < mealCount; i++) {
+      done = false;
       let absoluteMealCals = ((splitCarbs[i] * 4) + (splitProtein[i] * 4) + (splitFat[i] * 9));
       console.log('absoluteMealCals', absoluteMealCals);
       let calorieRange = `gte ${Math.floor(absoluteMealCals) - 50}, lte ${Math.floor(absoluteMealCals) + 50}`;
@@ -345,13 +351,60 @@ function getRecipes(mealCount) {
       apiOptions.calories = calorieRange;
       console.log('apiOptions', apiOptions);
       getDataFromApi(searchTerms[i], apiOptions, processRecipes);
+      // when done with calls, render to html from the appstate
+      
     }
   }
 
 }
 
+let recipesProcessed = 0;
+let recipes = [];
+
 function processRecipes(data) {
   console.log('api data', data);
+  const recipeIndex = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+  console.log('recipeIndex', recipeIndex);
+  appState.selectedRecipes.push({
+    category: data.q,
+    recipe_item: data.hits[recipeIndex].recipe
+  });
+  // select a random entry
+  // add it to an object in the appState
+  console.log(appState.selectedRecipes);
+
+  recipesProcessed += 1;
+  console.log('recipesProcessed', recipesProcessed);
+
+  if(recipesProcessed === getRecipeCountInputValue()) {
+    appState.selectedRecipes.forEach(function(item) {
+      recipes.push(renderRecipeHtml(item));
+    });
+    $(RECIPE_DISPLAY).empty();
+    $(RECIPE_DISPLAY).html(recipes);
+
+    // reset
+    recipesProcessed = 0;
+    recipes = [];
+  }
+
+}
+
+function renderRecipeHtml(selectedRecipe) {
+  return `<div class="recipe">
+            <img src="${selectedRecipe.recipe_item.image}" alt="${selectedRecipe.recipe_item.label}">
+            <div class="recipe-info">
+              <h2>${selectedRecipe.category}</h2>
+              <hr>
+              <h3><a href="${selectedRecipe.recipe_item.url}" target="_blank">${selectedRecipe.recipe_item.label}</a></h3>
+              <ul>
+                <li>Calories:${Math.floor(selectedRecipe.recipe_item.calories / selectedRecipe.recipe_item.yield)} Calories</li>
+                <li>Carbs: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.CHOCDF.quantity / selectedRecipe.recipe_item.yield)} (${Math.floor(selectedRecipe.recipe_item.totalNutrients.CHOCDF.quantity / selectedRecipe.recipe_item.yield) * 4})</li>
+                <li>Protein: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.PROCNT.quantity / selectedRecipe.recipe_item.yield)} (${Math.floor(selectedRecipe.recipe_item.totalNutrients.PROCNT.quantity / selectedRecipe.recipe_item.yield) * 4})</li>
+                <li>Fat: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.FAT.quantity / selectedRecipe.recipe_item.yield)} (${Math.floor(selectedRecipe.recipe_item.totalNutrients.FAT.quantity / selectedRecipe.recipe_item.yield) * 9})</li>
+              </ul>
+            </div>
+          </div>`;
 }
 
 
