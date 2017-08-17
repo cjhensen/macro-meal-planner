@@ -350,6 +350,9 @@ function getRecipes(mealCount) {
       console.log('typeof cr', typeof(calorieRange));
       apiOptions.calories = calorieRange;
       console.log('apiOptions', apiOptions);
+
+      // clear saved selected recipes first, allows for running multiple times
+      // appState.selectedRecipes = [];
       getDataFromApi(searchTerms[i], apiOptions, processRecipes);
       // when done with calls, render to html from the appstate
       
@@ -386,6 +389,7 @@ function processRecipes(data) {
     // reset
     recipesProcessed = 0;
     recipes = [];
+    appState.selectedRecipes = [];
   }
 
 }
