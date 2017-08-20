@@ -21,7 +21,7 @@ Technology Used
  - JQuery 
  - Node 
  - Gulp   
-   - browser-
+   - browser-sync
    - gulp-babili 
    - gulp-concat
    -  gulp-htmlclean  
