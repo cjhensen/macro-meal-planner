@@ -18,6 +18,7 @@ const MACRO_DISPLAY_FAT = '.js-macro-fat';
 const MEAL_COUNT_INPUT = '.js-meal-count';
 const BTN_GENERATE_RECIPE = '.js-btn-recipe-generator';
 const RECIPE_DISPLAY = '.js-recipe-display';
+const RECIPE_LOADER = '.js-recipe-loading';
 
 // API
 const API_URL = "https://api.edamam.com/search";

@@ -1,14 +1,25 @@
+let showLoader = false;
+function showRecipeLoader() {
+  if(showLoader === false) {
+    $(RECIPE_LOADER).hide();
+  }
+  if(showLoader === true) {
+    $(RECIPE_LOADER).show();
+  }
+}
+
 function handleRecipeBtnClicked(event) {
   event.preventDefault();
   console.log('handleRecipeBtnClicked');
   const mealCount = getRecipeCountInputValue();
   if(mealCount <= 5) {
+    showLoader = true;
+    showRecipeLoader();
     assignRandomMacroValuesToAppState(mealCount);
     getRecipes(mealCount);
   } else {
     console.log('Can not calculate for more than 5 meals');
   }
-
 }
 
 function getRecipeCountInputValue() {
@@ -117,6 +128,8 @@ function processRecipes(data) {
     recipesProcessed = 0;
     recipes = [];
     appState.selectedRecipes = [];
+    showLoader = false;
+    showRecipeLoader();
   }
 
 }
@@ -137,8 +150,6 @@ function renderRecipeHtml(selectedRecipe) {
             </div>
           </div>`;
 }
-
-
 
 function getDataFromApi(searchTerm, options, callback) {
 
