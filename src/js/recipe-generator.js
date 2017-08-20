@@ -136,17 +136,23 @@ function processRecipes(data) {
 
 function renderRecipeHtml(selectedRecipe) {
   return `<div class="recipe">
-            <img src="${selectedRecipe.recipe_item.image}" alt="${selectedRecipe.recipe_item.label}">
-            <div class="recipe-info">
-              <h2>${selectedRecipe.category}</h2>
-              <hr>
-              <h3><a href="${selectedRecipe.recipe_item.url}" target="_blank">${selectedRecipe.recipe_item.label}</a></h3>
-              <ul>
-                <li>Calories: ${Math.floor(selectedRecipe.recipe_item.calories / selectedRecipe.recipe_item.yield)}</li>
-                <li>Carbs: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.CHOCDF.quantity / selectedRecipe.recipe_item.yield)}g (${Math.floor(selectedRecipe.recipe_item.totalNutrients.CHOCDF.quantity / selectedRecipe.recipe_item.yield) * 4})</li>
-                <li>Protein: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.PROCNT.quantity / selectedRecipe.recipe_item.yield)}g (${Math.floor(selectedRecipe.recipe_item.totalNutrients.PROCNT.quantity / selectedRecipe.recipe_item.yield) * 4})</li>
-                <li>Fat: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.FAT.quantity / selectedRecipe.recipe_item.yield)}g (${Math.floor(selectedRecipe.recipe_item.totalNutrients.FAT.quantity / selectedRecipe.recipe_item.yield) * 9})</li>
-              </ul>
+            <div class="row">
+              <div class="col-3">
+                <img src="${selectedRecipe.recipe_item.image}" alt="${selectedRecipe.recipe_item.label}">
+              </div>
+              <div class="col-9">
+                <div class="recipe-info">
+                  <h2>${selectedRecipe.category}</h2>
+                  <hr>
+                  <h3><a href="${selectedRecipe.recipe_item.url}" target="_blank">${selectedRecipe.recipe_item.label}</a></h3>
+                  <ul>
+                    <li>Calories: ${Math.floor(selectedRecipe.recipe_item.calories / selectedRecipe.recipe_item.yield)}</li>
+                    <li>Carbs: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.CHOCDF.quantity / selectedRecipe.recipe_item.yield)}g (${Math.floor(selectedRecipe.recipe_item.totalNutrients.CHOCDF.quantity / selectedRecipe.recipe_item.yield) * 4})</li>
+                    <li>Protein: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.PROCNT.quantity / selectedRecipe.recipe_item.yield)}g (${Math.floor(selectedRecipe.recipe_item.totalNutrients.PROCNT.quantity / selectedRecipe.recipe_item.yield) * 4})</li>
+                    <li>Fat: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.FAT.quantity / selectedRecipe.recipe_item.yield)}g (${Math.floor(selectedRecipe.recipe_item.totalNutrients.FAT.quantity / selectedRecipe.recipe_item.yield) * 9})</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>`;
 }
