@@ -129,10 +129,10 @@ function renderRecipeHtml(selectedRecipe) {
               <hr>
               <h3><a href="${selectedRecipe.recipe_item.url}" target="_blank">${selectedRecipe.recipe_item.label}</a></h3>
               <ul>
-                <li>Calories:${Math.floor(selectedRecipe.recipe_item.calories / selectedRecipe.recipe_item.yield)} Calories</li>
-                <li>Carbs: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.CHOCDF.quantity / selectedRecipe.recipe_item.yield)} (${Math.floor(selectedRecipe.recipe_item.totalNutrients.CHOCDF.quantity / selectedRecipe.recipe_item.yield) * 4})</li>
-                <li>Protein: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.PROCNT.quantity / selectedRecipe.recipe_item.yield)} (${Math.floor(selectedRecipe.recipe_item.totalNutrients.PROCNT.quantity / selectedRecipe.recipe_item.yield) * 4})</li>
-                <li>Fat: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.FAT.quantity / selectedRecipe.recipe_item.yield)} (${Math.floor(selectedRecipe.recipe_item.totalNutrients.FAT.quantity / selectedRecipe.recipe_item.yield) * 9})</li>
+                <li>Calories:${Math.floor(selectedRecipe.recipe_item.calories / selectedRecipe.recipe_item.yield)}</li>
+                <li>Carbs: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.CHOCDF.quantity / selectedRecipe.recipe_item.yield)}g (${Math.floor(selectedRecipe.recipe_item.totalNutrients.CHOCDF.quantity / selectedRecipe.recipe_item.yield) * 4})</li>
+                <li>Protein: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.PROCNT.quantity / selectedRecipe.recipe_item.yield)}g (${Math.floor(selectedRecipe.recipe_item.totalNutrients.PROCNT.quantity / selectedRecipe.recipe_item.yield) * 4})</li>
+                <li>Fat: ${Math.floor(selectedRecipe.recipe_item.totalNutrients.FAT.quantity / selectedRecipe.recipe_item.yield)}g (${Math.floor(selectedRecipe.recipe_item.totalNutrients.FAT.quantity / selectedRecipe.recipe_item.yield) * 9})</li>
               </ul>
             </div>
           </div>`;
