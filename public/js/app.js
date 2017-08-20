@@ -111,13 +111,13 @@ function updateMacroDisplay(macros) {
     item.text('');
   });
 
-  displayCals.append(macros.totalCals);
-  displayProteinCals.append(macros.protein.calories);
-  displayProteinGrams.append(macros.protein.grams);
-  displayCarbsCals.append(macros.carbs.calories);
-  displayCarbsGrams.append(macros.carbs.grams);
-  displayFatCals.append(macros.fat.calories);
-  displayFatGrams.append(macros.fat.grams);
+  displayCals.append(Math.floor(macros.totalCals));
+  displayProteinCals.append(Math.floor(macros.protein.calories));
+  displayProteinGrams.append(Math.floor(macros.protein.grams));
+  displayCarbsCals.append(Math.floor(macros.carbs.calories));
+  displayCarbsGrams.append(Math.floor(macros.carbs.grams));
+  displayFatCals.append(Math.floor(macros.fat.calories));
+  displayFatGrams.append(Math.floor(macros.fat.grams));
 }
 
 

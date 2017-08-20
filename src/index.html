@@ -72,34 +72,36 @@
       </div><!-- / .macro-calc -->
 
       <div class="macro-display js-macro-display">
+      <div class="row">
         <ul>
           <li class="total-cals js-total-cals">Total Calories: <span></span></li>
-          <li class="macro js-macro-protein">Protein
+          <li class="macro js-macro-protein col-4">Protein
             <ul>
               <li>Calories: <span></span></li>
               <li>Grams: <span></span></li>
             </ul>
           </li>
-          <li class="macro js-macro-carbs">Carbs
+          <li class="macro js-macro-carbs col-4">Carbs
             <ul>
               <li>Calories: <span></span></li>
               <li>Grams: <span></span></li>
             </ul>
           </li>
-          <li class="macro js-macro-fat">Fat
+          <li class="macro js-macro-fat col-4">Fat
             <ul>
               <li>Calories: <span></span></li>
               <li>Grams: <span></span></li>
             </ul>
           </li>
         </ul>
+        </div>
       </div><!-- / .macro-display -->
 
 
       <div class="recipe-generator">
         <form id="recipe-generator">
           <fieldset>
-            <label class="meals-input" for="meals-input">How many meals would you like to eat per day? (5 max)
+            <label class="meals-input" for="meals-input">How many meals would you like to eat per day? <br /><span>(5 meals max due to API limitations)</span>
               <input class="js-meal-count" type="number" id="meals-input" name="meals" max="5" required>
             </label>
           </fieldset>

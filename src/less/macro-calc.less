@@ -8,6 +8,7 @@
   width: 60%;
   margin: 0 auto;
   padding-top: 40px;
+  padding-bottom: 40px;
 
   label {
     .base-font(18px);
@@ -39,28 +40,51 @@
     height: 60px;
 
     &:hover {
+      background: darken(@color-blue, 5%);
       cursor: pointer;
+      transition: background .2s ease-in;
     }
   }
 }
 
 .macro-display {
-  background: @color-tan;
+  // background: #e8e8e8;
+  margin-bottom: 40px;
   ul {
     list-style: none;
+    padding: 0;
+    .base-font;
+    span {
+      font-weight: 600;
+    }
   }
   li.total-cals {
     display: block;
+    text-align: center;
+    padding: 15px 0 15px;
+    .base-font(20px);
+    border-bottom: 1px solid @color-grey;
   }
   li.macro { 
-    color: red;
     display: inline-block;
-    text-align: right;
+    // text-align: left;
+    .base-font(20px, 500);
     ul {
-      display: inline-block;
+      // display: inline-block;
       vertical-align: top;
       padding: 0;
-      margin: 0 30px 0 10px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid @color-grey;
+      // margin: 0 30px 0 10px;
+      // text-align: right;
+      li {
+        margin-bottom: 4px;
+        .base-font(16px);
+
+        span {
+          font-weight: 600;
+        }
+      }
     }
   }
 }
