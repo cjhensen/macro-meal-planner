@@ -35,7 +35,7 @@ Technology Used
 
 Screenshots
 -----------
-![App Screenshot 1](https://lh6.googleusercontent.com/2z_fwEAkmjSep4tNsPP9yL6M6mHshTstA27XcOmdon_hA-U4KOt-quDzZawFuEDXCPoc5O0tPYYJe6c=w1208-h776-rw)
+![App Screenshot 1](https://image.ibb.co/fPpmK5/newss1.png)
 
 
-![App Screenshot 2](https://lh3.googleusercontent.com/pm0rWQBmpTqExUjCLcDLowI8f_1R06lMcyne4wF1V1WyMpalOxdB6hI1EEA4cOO_9o8frdiQrQ8YHJc=w1208-h776-rw)
+![App Screenshot 2](https://image.ibb.co/isyfe5/newss2.png)
