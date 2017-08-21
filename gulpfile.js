@@ -34,7 +34,7 @@ const folders = {
 
 // gulp defaults
 gulp.task('default', ['clean', 'serve'], function() {
-  gulp.start('less', 'html', 'js')
+  gulp.start('less', 'html', 'js', 'images')
 });
 
 // browser sync server and watch/live changes
@@ -50,9 +50,16 @@ gulp.task('serve', function() {
   gulp.watch(`${folders.src}/less/**/*.less`, ['less']);
   gulp.watch(`${folders.src}/**/*.html`, ['html']);
   gulp.watch(`${folders.src}/js/**/*.js`, ['js']);
+  gulp.watch(`${folders.src}/images/**`, ['images']);
   gulp.watch(`${folders.build}/**`).on('change', browserSync.reload);
 });
 
+// migrate images
+gulp.task('images', function() {
+  return gulp.src(`${folders.src}/images/**`)
+  .pipe(gulp.dest(`${folders.build}/images`))
+  .pipe(notify({ message: 'Images moved to dev_build successfully' }));
+});
 
 // compile less
 gulp.task('less', function() {
@@ -62,7 +69,12 @@ gulp.task('less', function() {
   .pipe(gulp.dest(`${folders.build}/css`))
   .pipe(browserSync.stream())
   .pipe(notify({ message: 'LESS compiled successfully' }));
+  // .on('error', handleError(error));
 });
+
+function handleError(error) {
+  console.log('ERROR:', error.message);
+}
 
 // migrate html
 gulp.task('html', function() {

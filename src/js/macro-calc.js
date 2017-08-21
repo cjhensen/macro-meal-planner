@@ -12,6 +12,8 @@ const MACRO_DISPLAY_CALS = '.js-total-cals';
 const MACRO_DISPLAY_PROTEIN = '.js-macro-protein';
 const MACRO_DISPLAY_CARBS = '.js-macro-carbs';
 const MACRO_DISPLAY_FAT = '.js-macro-fat';
+const BTN_SHOW_APP_INFO = '.js-show-app-info';
+const APP_INFO_DISPLAY = '.js-app-info';
 
 
 // Recipe-generator.js
@@ -252,12 +254,18 @@ function getMacroFormValues() {
   return macroFormValues;
 }
 
+function handleShowAppInfoBtnClicked() {
+  console.log('show app info');
+  $(APP_INFO_DISPLAY).toggleClass('app-info-expanded');
+}
+
 // Sets up event handlers for:
 // macro button click
 // 
 function assignEventHandlers() {
   $(BTN_GENERATE_MACROS).on('click', handleMacroBtnClicked);
   $(BTN_GENERATE_RECIPE).on('click', handleRecipeBtnClicked);
+  $(BTN_SHOW_APP_INFO).on('click', handleShowAppInfoBtnClicked);
 }
 
 // Runs the app

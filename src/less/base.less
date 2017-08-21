@@ -4,18 +4,62 @@
 
 body {
   background-color: @color-tan;
+  background: url("../images/bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  // filter: blur(2px) brightness(50%);
 }
 h1 {
   text-align: center;
+  padding-top: 40px;
+  .base-font(28px, 700);
+}
+h3 {
+  .base-font(20px, 500);
+}
+p {
+  .base-font;
+  line-height: 1.5em;
 }
 
-.container {
+p {
+  color: @color-grey;
+}
+.app-info {
   margin: 0 auto;
+  float: none !important; // taking out of grid structure
+  height: auto;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height .5s;
+}
+.show-app-info {
+  width: 60%;
+  margin: 40px auto 0;
+  display: block;
+  border-radius: 4px;
+  background: lighten(@color-red, 10%);
+  border: 1px solid #efefef;
+  .base-font(20px);
+  color: #fff;
+  height: 60px;
+
+  &:hover {
+    background: darken(@color-red, 5%);
+    cursor: pointer;
+    transition: background .2s ease-in;
+  }
+}
+.app-info-expanded {
+  height: auto;
+  max-height: 2000px;
+  transition: max-height .5s;
+}
+.container {
+  margin: 80px auto;
   max-width: 860px;
   border-radius: 8px;
-  margin-bottom: 80px;
 
-  background: #fff;
+  background: rgba(255,255,255,1);
 
   -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.3);
   -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.3);
