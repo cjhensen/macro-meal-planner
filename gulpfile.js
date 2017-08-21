@@ -69,6 +69,7 @@ gulp.task('html', function() {
   return gulp.src(`${folders.src}/**/*.html`)
     .pipe(newer(`${folders.build}`))
     .pipe(gulp.dest(`${folders.build}/`))
+    .pipe(browserSync.stream())
     .pipe(notify({ message: 'HTML moved to dev_build successfully' }));
 });
 
