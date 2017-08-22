@@ -17,41 +17,30 @@
     <div class="container">
     <div class="row">
     <h1>Macronutrient Calculator / Recipe Generator</h1>
-
-    <button class="show-app-info js-show-app-info">Start Here!</button>
-    <div class="app-info js-app-info col-9">
-      <h3>About Macronutrients:</h3>
-      <hr />
-      <p>
-        A macronutrient is one of the three major nutrients that our body needs (Protein, Fat, and Carbohydrates).<br />
-        <br />
-        For the most effective weight loss or weight gain strategy, it is best to track the foods you eat. By tracking these three nutrients, you can guarantee yourself the best results possible.<br />
-        <br />
-        If you are trying to gain weight, you should eat 20% more than your Total Daily Energy Expenditure(TDEE) (the calories you burn throughout the day taking into account activities such as work, gym, etc).
-      </p>
-      <br />
-      <p>
-        If you are trying to lose weight, you should eat 20% less than your TDEE.<br />
-        <br />
-        <b>Protein:</b> Science suggests that people need at most 1 gram of protein per pound of bodyweight when gaining or maintaining weight. When losing weight, it is best to have 1.2 grams of protein per pound of bodyweight.<br />
-        <b>Fat:</b> Science suggests that people should consume 25% of their total calories from healthy dietary fat<br />
-        <b>Carbs:</b> Carbs are a source of energy and are necessary for muscle growth and even fat loss. The rest of your total calories should come from carbs.
-      </p>
-      <br />
-      <h3>How to use this App</h3>
-      <hr />
-      <p>Begin by entering your information below (all fields are required).</p>
-      <p>When choosing an activity level, pick a level based on the information below:<br />
-        <b>Sedentary:</b> Desk job, little to no exercise or extra activities.<br /> 
-        <b>Light:</b> You go on short walks or do housework or cleaning.<br /> 
-        <b>Moderate:</b> You move most of the day and exercise a moderate amount of effort 3-5 days a week.<br /> 
-        <b>Very:</b> You vigorously exercise and play sports most days.<br /> 
-        <b>Extremely:</b> You vigorously exercise or play sports 6-7 days a week plus a job which requires physical exertion.<br /> 
-      </p>
-      <p>
-        Once you've entered your information in and calculated your macros, you can then choose how many meals you would like to eat per day (5 max) and click 'Generate Recipe List'. This will take the calories you are supposed to be eating and break them down by individual meals and generate a recipe list based on those caloric breakdowns.
-      </p>
-      </div>
+      <div class="how-to col-8">
+        <h3>How to Use this App</h3>
+        <p>Begin by entering your information below and calculating your macronutrient goals. Then enter how many meals you'd like to eat, and the app will split up your nutrient goals into various meals.</p>
+        <p>If you'd like some more information regarding macronutrients, <span><a href="#" class="js-show-app-info">click here</a></span>.
+        </p>
+      </div><!-- / .how-to -->
+      <div class="app-info js-app-info col-9">
+        <h3>About Macronutrients:</h3>
+        <hr />
+        <p>
+          A macronutrient is one of the three major nutrients that our body needs (Protein, Fat, and Carbohydrates).<br />
+          <br />
+          For the most effective weight loss or weight gain strategy, it is best to track the foods you eat. By tracking these three nutrients, you can guarantee yourself the best results possible.<br />
+          <br />
+          If you are trying to gain weight, you should eat 20% more than your Total Daily Energy Expenditure(TDEE) (the calories you burn throughout the day taking into account activities such as work, gym, etc).
+        </p>
+        <p>
+          If you are trying to lose weight, you should eat 20% less than your TDEE.<br />
+          <br />
+          <b>Protein:</b> Science suggests that people need at most 1 gram of protein per pound of bodyweight when gaining or maintaining weight. When losing weight, it is best to have 1.2 grams of protein per pound of bodyweight.<br />
+          <b>Fat:</b> Science suggests that people should consume 25% of their total calories from healthy dietary fat<br />
+          <b>Carbs:</b> Carbs are a source of energy and are necessary for muscle growth and even fat loss. The rest of your total calories should come from carbs.
+        </p>
+        </div>
       </div>
       <div class="macro-calc">
 
@@ -84,7 +73,18 @@
             <input class="js-weight-input" type="number" id="weight-input" name="Weight" pattern="[0-9]*">
           </fieldset>
 
-          <fieldset>
+          <fieldset class="tooltip js-tooltip">
+            <span class="tooltip-text js-tooltip-text">
+              <b>Sedentary:</b> Desk job, little to no exercise or extra activities.
+              <br />
+              <b>Light:</b> You go on short walks or do housework or cleaning.
+              <br />
+              <b>Moderate:</b> You move most of the day and exercise a moderate amount of effort 3-5 days a week. 
+              <br />
+              <b>Very:</b> You vigorously exercise and play sports most days.
+              <br />
+              <b>Extremely:</b> You vigorously exercise or play sports 6-7 days a week plus a job which requires physical exertion.
+            </span>
             <label class="activity-choice" for="activity-choice">Activity</label>
             <select class="js-activity-choice" name="activity" id="activity-choice" required>
               <option value="" disabled selected>Select an activity level</option>

@@ -7,7 +7,6 @@
 
   width: 60%;
   margin: 0 auto;
-  padding-top: 40px;
   padding-bottom: 40px;
 
   label {
@@ -43,6 +42,34 @@
       background: darken(@color-green, 10%);
       cursor: pointer;
       transition: background .2s ease-in;
+    }
+  }
+
+  .tooltip {
+    position: relative;
+
+
+    .tooltip-text {
+      visibility: hidden;
+      background-color: #e2e2e2;
+      color: @color-grey;
+      border-radius: 4px;
+      padding: 10px;
+      width: 100%;
+      display: block;
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      .base-font(14px);
+      line-height: 1.3em;
+
+      -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.3);
+      -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.3);
+      box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.3);
+    }
+
+    .tooltip-text-visible {
+      visibility: visible;
     }
   }
 }

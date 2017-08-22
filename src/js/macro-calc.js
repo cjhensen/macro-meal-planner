@@ -14,6 +14,8 @@ const MACRO_DISPLAY_CARBS = '.js-macro-carbs';
 const MACRO_DISPLAY_FAT = '.js-macro-fat';
 const BTN_SHOW_APP_INFO = '.js-show-app-info';
 const APP_INFO_DISPLAY = '.js-app-info';
+const ACTIVITY_TOOLTIP = '.js-tooltip';
+const ACTIVITY_TOOLTIP_TEXT = '.js-tooltip-text';
 
 
 // Recipe-generator.js
@@ -259,6 +261,10 @@ function handleShowAppInfoBtnClicked() {
   $(APP_INFO_DISPLAY).toggleClass('app-info-expanded');
 }
 
+function handleTooltipVisibility() {
+  $(ACTIVITY_TOOLTIP_TEXT).toggleClass('tooltip-text-visible');
+}
+
 // Sets up event handlers for:
 // macro button click
 // 
@@ -266,6 +272,8 @@ function assignEventHandlers() {
   $(BTN_GENERATE_MACROS).on('click', handleMacroBtnClicked);
   $(BTN_GENERATE_RECIPE).on('click', handleRecipeBtnClicked);
   $(BTN_SHOW_APP_INFO).on('click', handleShowAppInfoBtnClicked);
+  $(ACTIVITY_INPUT).on('focus', handleTooltipVisibility);
+  $(ACTIVITY_INPUT).on('blur', handleTooltipVisibility);
 }
 
 // Runs the app
