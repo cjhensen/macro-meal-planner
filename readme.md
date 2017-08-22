@@ -35,7 +35,7 @@ Technology Used
 
 Screenshots
 -----------
-![App Screenshot 1](https://image.ibb.co/fPpmK5/newss1.png)
+![App Screenshot 1](https://image.ibb.co/dPQOj5/Screen_Shot_2017_08_22_at_6_38_21_PM.png)
 
 
 ![App Screenshot 2](https://image.ibb.co/isyfe5/newss2.png)
